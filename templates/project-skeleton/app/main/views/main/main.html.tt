@@ -1,0 +1,18 @@
+<:Title>
+  {{ template main_path, "title", {controller_group: 'main'} }}
+
+<:Body>
+  <div class="container">
+    <div class="header">
+      <h3><%= config[:name] %></h3>
+    </div>
+
+    <:volt:notices />
+
+    {{ template main_path, 'body', {controller_group: 'main'} }}
+
+    <div class="footer">
+      <p>&copy; Company 2015</p>
+    </div>
+
+  </div>

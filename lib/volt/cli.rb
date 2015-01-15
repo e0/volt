@@ -11,6 +11,7 @@ module Volt
 
     register(Generate, 'generate', 'generate GENERATOR [args]', 'Run a generator.')
 
+    option :skeleton, :type => :boolean
     desc 'new PROJECT_NAME', 'generates a new project.'
 
     def new(name)
@@ -18,7 +19,9 @@ module Volt
 
       # Grab the current volt version
       version = File.read(File.join(File.dirname(__FILE__), '../../VERSION'))
-      directory('project', name, version: version, name: name)
+      project_path = 'project'
+      project_path += '-skeleton' if options[:skeleton]
+      directory(project_path, name, version: version, name: name)
 
       say 'Bundling Gems....'
       `cd #{name} && bundle`
